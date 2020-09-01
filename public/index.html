@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      rel="stylesheet"
+    />
+    <style>
+      .parent {
+        width: 600px;
+        margin: 0 auto;
+      }
+
+      #gender,
+      #first-question,
+      #second-question,
+      #third-question,
+      .form-question,
+      #birthday {
+        padding: 20px;
+      }
+
+      nav {
+        padding: 10px;
+        padding-left: 30%;
+        border-bottom: 1px solid turquoise;
+        background-color: aquamarine;
+      }
+
+      #user-info,
+      #question,
+      #consultation {
+        margin: 0 auto;
+        border: 1px solid turquoise;
+        text-align: left;
+      }
+
+      #form-consultation {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .route-button {
+        padding: 20px;
+      }
+
+      .button {
+        margin: 10px;
+      }
+
+      .p {
+        padding-top: 30px;
+        padding-left: 10px;
+      }
+
+      select {
+        padding: 5px;
+      }
+
+      textarea{
+        padding: 5px;
+      }
+    </style>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
