@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
@@ -13,41 +13,27 @@ const store = new Vuex.Store({
     consultation: false,
   },
   mutations: {
-    switchFalseUserInfo(state) {
-      state.userInfo = false;
+    moveOnPage(state, payload) {
+      state.userInfo = payload.userInfo;
+      state.question = payload.question;
+      state.firstquestion = payload.firstquestion;
+      state.secondquestion = payload.secondquestion;
+      state.thirdquestion = payload.thirdquestion;
+      state.consultation = payload.consultation;
     },
-    switchTrueUserInfo(state) {
-      state.userInfo = true;
+    returnPage(state, payload) {
+      state.userInfo = payload.userInfo;
+      state.question = payload.question;
+      state.firstquestion = payload.firstquestion;
+      state.secondquestion = payload.secondquestion;
+      state.thirdquestion = payload.thirdquestion;
+      state.consultation = payload.consultation;
     },
-    switchTrueQuestion(state) {
-      state.question = true;
-    },
-    switchFalseQuestion(state) {
-      state.question = false;
-    },
-    switchTrueFirstquestion(state) {
-      state.firstquestion = true;
-    },
-    switchFalseFirstquestion(state) {
-      state.firstquestion = false;
-    },
-    switchTrueSecondquestion(state) {
+    openSecondquestion(state) {
       state.secondquestion = true;
     },
-    switchFalseSecondquestion(state) {
-      state.secondquestion = false;
-    },
-    switchTrueThirdquestion(state) {
+    openThirdquestion(state) {
       state.thirdquestion = true;
-    },
-    switchFalseThirdquestion(state) {
-      state.thirdquestion = false;
-    },
-    switchTrueConsultation(state) {
-      state.consultation = true;
-    },
-    switchFalseConsultation(state) {
-      state.consultation = false;
     },
   },
 });

@@ -1,5 +1,5 @@
 <template>
-  <div class="parent" v-show="userInfo">
+  <div class="parent" v-show="stateUserInfo">
     <div id="user-info">
       <nav>
         <i class="far fa-address-card"></i>お客様の情報を入力してください
@@ -18,11 +18,11 @@
         <select v-model="year">
           <option v-for="era in eras" :key="era.year" :value="era.year">{{ era.label }}</option>
         </select>
-年
+        年
         <select v-model="month" v-on:change="get_days">
           <option v-for="n of 12" v-bind:key="n">{{n}}</option>
         </select>
-月
+        月
         <select v-model="day">
           <option v-for="n of days_max" v-bind:key="n">{{n}}</option>
         </select>日
@@ -36,13 +36,21 @@
 
 <script>
 export default {
-  name: "UserInfo",
+  name: 'UserInfo',
   data: function () {
     return {
+      next: {
+        userInfo: false,
+        question: true,
+        firstquestion: true,
+        secondquestion: false,
+        thirdquestion: false,
+        consultation: false,
+      },
       year: 1970,
       month: 1,
       day: 1,
-      days_max: "",
+      days_max: '',
       eras: [],
     };
   },
@@ -56,19 +64,15 @@ export default {
     get_days: function () {
       this.days_max = new Date(this.year, this.month, 0).getDate();
     },
-    switchTrueFirstquestion: function () {
-      this.$store.commit("switchTrueFirstquestion");
-    },
-    switchFalseUserInfo: function () {
-      this.$store.commit("switchFalseUserInfo");
-    },
-    switchTrueQuestion: function () {
-      this.$store.commit("switchTrueQuestion");
-    },
-    moveOnPage: function () {
-      this.switchFalseUserInfo();
-      this.switchTrueFirstquestion();
-      this.switchTrueQuestion();
+    moveOnPage() {
+      this.$store.commit('moveOnPage', {
+        userInfo: this.next.userInfo,
+        question: this.next.question,
+        firstquestion: this.next.firstquestion,
+        secondquestion: this.next.secondquestion,
+        thirdquestion: this.next.thirdquestion,
+        consultation: this.next.consultation,
+      });
     },
     genereate() {
       const eras = [];
@@ -87,7 +91,7 @@ export default {
     },
   },
   computed: {
-    userInfo: function () {
+    stateUserInfo: function () {
       return this.$store.state.userInfo;
     },
   },

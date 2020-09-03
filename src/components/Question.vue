@@ -1,12 +1,12 @@
 <template>
-  <div class="parent" v-if="question">
+  <div class="parent" v-if="stateQuestion">
     <div id="question">
       <nav>
         <i class="fas fa-chalkboard-teacher"></i>以下にお答えください
       </nav>
-      <div id="first-question" v-if="firstquestion">
+      <div id="first-question" v-if="stateFirstquestion">
         <p class="p">現在生命保険に加入されていますか？</p>
-        <form class="form-question" v-on:change="switchTrueSecondquestion">
+        <form class="form-question" v-on:change="openSecondquestion">
           <label>
             <input type="radio" name="first" />はい
           </label>
@@ -16,9 +16,9 @@
         </form>
       </div>
 
-      <div id="second-question" v-if="secondquestion">
+      <div id="second-question" v-if="stateSecondquestion">
         <p>現在入院中ですか。または、３ヶ月以内に医師の診断、検査の結果、入院、手術を進められたことはありますか？</p>
-        <form class="form-question" v-on:change="switchTrueThirdquestion">
+        <form class="form-question" v-on:change="openThirdquestion">
           <label>
             <input type="radio" name="second" />はい
           </label>
@@ -28,7 +28,7 @@
         </form>
       </div>
 
-      <div id="third-question" v-if="thirdquestion">
+      <div id="third-question" v-if="stateThirdquestion">
         <p>過去5年以内に病気や怪我、手術を受けたことまたは、継続して７日間以上の入院をしたことがありますか？</p>
         <form class="form-question">
           <label>
@@ -42,65 +42,77 @@
     </div>
     <div class="route-button">
       <router-link to="/" class="button is-primary" v-on:click.native="returnPage">＜ 前へ戻る</router-link>
-      <router-link to="/consultation" class="button is-primary" v-on:click.native="moveOnPage">次へ進む ＞</router-link>
+      <router-link
+        to="/consultation"
+        class="button is-primary"
+        v-on:click.native="moveOnPage"
+      >次へ進む ＞</router-link>
     </div>
   </div>
 </template>
     
 <script>
 export default {
-  name: "Question",
+  name: 'Question',
+  data: function () {
+    return {
+      next: {
+        userInfo: false,
+        question: false,
+        firstquestion: false,
+        secondquestion: false,
+        thirdquestion: false,
+        consultation: true,
+      },
+      previous: {
+        userInfo: true,
+        question: false,
+        firstquestion: false,
+        secondquestion: false,
+        thirdquestion: false,
+        consultation: false,
+      },
+    };
+  },
   methods: {
-    switchFalseFirstquestion: function () {
-      this.$store.commit("switchFalseFirstquestion");
+    moveOnPage() {
+      this.$store.commit('moveOnPage', {
+        userInfo: this.next.userInfo,
+        question: this.next.question,
+        firstquestion: this.next.firstquestion,
+        secondquestion: this.next.secondquestion,
+        thirdquestion: this.next.thirdquestion,
+        consultation: this.next.consultation,
+      });
     },
-    switchTrueSecondquestion: function () {
-      this.$store.commit("switchTrueSecondquestion");
+    returnPage() {
+      this.$store.commit('returnPage', {
+        userInfo: this.previous.userInfo,
+        question: this.previous.question,
+        firstquestion: this.previous.firstquestion,
+        secondquestion: this.previous.secondquestion,
+        thirdquestion: this.previous.thirdquestion,
+        consultation: this.next.consultation,
+      });
     },
-    switchFalseSecondquestion: function () {
-      this.$store.commit("switchFalseSecondquestion");
+    openSecondquestion() {
+      this.$store.commit('openSecondquestion');
     },
-    switchTrueThirdquestion: function () {
-      this.$store.commit("switchTrueThirdquestion");
-    },
-    switchFalseThirdquestion: function () {
-      this.$store.commit("switchFalseThirdquestion");
-    },
-    switchFalseUserInfo: function () {
-      this.$store.commit("switchFalseUserInfo");
-    },
-    switchFalseQuestion: function () {
-      this.$store.commit("switchFalseQuestion");
-    },
-    switchTrueConsultation: function () {
-      this.$store.commit("switchTrueConsultation");
-    },
-    switchTrueUserInfo: function () {
-      this.$store.commit("switchTrueUserInfo");
-    },
-    moveOnPage: function () {
-      this.switchFalseQuestion();
-      this.switchTrueConsultation();
-    },
-    returnPage: function () {
-      this.switchFalseQuestion();
-      this.switchTrueUserInfo();
-      this.switchFalseFirstquestion();
-      this.switchFalseSecondquestion();
-      this.switchFalseThirdquestion();
+    openThirdquestion() {
+      this.$store.commit('openThirdquestion');
     },
   },
   computed: {
-    question: function () {
+    stateQuestion: function () {
       return this.$store.state.question;
     },
-    firstquestion: function () {
+    stateFirstquestion: function () {
       return this.$store.state.firstquestion;
     },
-    secondquestion: function () {
+    stateSecondquestion: function () {
       return this.$store.state.secondquestion;
     },
-    thirdquestion: function () {
+    stateThirdquestion: function () {
       return this.$store.state.thirdquestion;
     },
   },

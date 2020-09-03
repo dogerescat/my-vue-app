@@ -1,5 +1,5 @@
 <template>
-  <div class="parent" v-show="consultation">
+  <div class="parent" v-show="stateConsultation">
     <div id="consultation">
       <nav>
         <i class="far fa-file-alt"></i>ご相談をご記入ください
@@ -21,29 +21,33 @@
 </template>
 <script>
 export default {
-  name: "Consultation",
+  name: 'Consultation',
+  data: function () {
+    return {
+      previous: {
+        userInfo: false,
+        question: true,
+        firstquestion: true,
+        secondquestion: false,
+        thirdquestion: false,
+        consultation: false,
+      },
+    };
+  },
   methods: {
-    switchFalseConsultation: function () {
-      this.$store.commit("switchFalseConsultation");
-    },
-    switchTrueQuestion: function () {
-      this.$store.commit("switchTrueQuestion");
-    },
-    switchFalseSecondquestion: function () {
-      this.$store.commit("switchFalseSecondquestion");
-    },
-    switchFalseThirdquestion: function () {
-      this.$store.commit("switchFalseThirdquestion");
-    },
-    returnPage: function () {
-      this.switchFalseConsultation();
-      this.switchTrueQuestion();
-      this.switchFalseSecondquestion();
-      this.switchFalseThirdquestion();
+    returnPage() {
+      this.$store.commit('returnPage', {
+        userInfo: this.previous.userInfo,
+        question: this.previous.question,
+        firstquestion: this.previous.firstquestion,
+        secondquestion: this.previous.secondquestion,
+        thirdquestion: this.previous.thirdquestion,
+        consultation: this.previous.consultation,
+      });
     },
   },
   computed: {
-    consultation: function () {
+    stateConsultation: function () {
       return this.$store.state.consultation;
     },
   },
