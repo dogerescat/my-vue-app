@@ -1,5 +1,5 @@
 <template>
-  <div class="parent" v-show="stateUserInfo">
+  <div class="parent">
     <div id="user-info">
       <nav>
         <i class="far fa-address-card"></i>お客様の情報を入力してください
@@ -29,7 +29,7 @@
       </form>
     </div>
     <div class="route-button">
-      <router-link to="/question" class="button is-primary" v-on:click.native="moveOnPage">次へ進む ＞</router-link>
+      <router-link to="/question" class="button is-primary">次へ進む ＞</router-link>
     </div>
   </div>
 </template>
@@ -39,14 +39,6 @@ export default {
   name: 'UserInfo',
   data: function () {
     return {
-      next: {
-        userInfo: false,
-        question: true,
-        firstquestion: true,
-        secondquestion: false,
-        thirdquestion: false,
-        consultation: false,
-      },
       year: 1970,
       month: 1,
       day: 1,
@@ -64,16 +56,6 @@ export default {
     get_days: function () {
       this.days_max = new Date(this.year, this.month, 0).getDate();
     },
-    moveOnPage() {
-      this.$store.commit('moveOnPage', {
-        userInfo: this.next.userInfo,
-        question: this.next.question,
-        firstquestion: this.next.firstquestion,
-        secondquestion: this.next.secondquestion,
-        thirdquestion: this.next.thirdquestion,
-        consultation: this.next.consultation,
-      });
-    },
     genereate() {
       const eras = [];
       for (let y = 2020; y > 1920; y--) {
@@ -88,11 +70,6 @@ export default {
         }
       }
       return eras;
-    },
-  },
-  computed: {
-    stateUserInfo: function () {
-      return this.$store.state.userInfo;
     },
   },
 };
