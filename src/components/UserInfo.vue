@@ -7,10 +7,10 @@
       <p class="p">-性別-</p>
       <form id="gender">
         <label>
-          <input type="radio" name="radio" value="men" checked />男性
+          <input type="radio" name="radio" v-model="gender" value="男性" checked />男性
         </label>
         <label>
-          <input type="radio" name="radio" value="women" />女性
+          <input type="radio" name="radio" v-model="gender" value="女性" />女性
         </label>
       </form>
       <p class="p">-生年月日-</p>
@@ -29,31 +29,36 @@
       </form>
     </div>
     <div class="route-button">
-      <router-link to="/question" class="button is-primary">次へ進む ＞</router-link>
+      <router-link
+        to="/question"
+        class="button is-primary"
+        v-on:click.native="manageUserInfo"
+      >次へ進む ＞</router-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'UserInfo',
-  data: function () {
+  name: "UserInfo",
+  data() {
     return {
       year: 1970,
       month: 1,
       day: 1,
-      days_max: '',
+      days_max: "",
       eras: [],
+      gender: "",
     };
   },
-  created: function () {
+  created() {
     this.get_days();
   },
-  mounted: function () {
+  mounted() {
     this.eras = this.genereate();
   },
   methods: {
-    get_days: function () {
+    get_days() {
       this.days_max = new Date(this.year, this.month, 0).getDate();
     },
     genereate() {
@@ -70,6 +75,14 @@ export default {
         }
       }
       return eras;
+    },
+    manageUserInfo() {
+      this.$store.commit("manageUserInfo", {
+        gender: this.gender,
+        year: this.year,
+        month: this.month,
+        day: this.day,
+      });
     },
   },
 };

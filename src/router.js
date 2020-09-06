@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Question from './components/Question.vue';
 import Consultation from './components/Consultation.vue';
 import UserInfo from './components/UserInfo.vue';
+import Confirmation from './components/Confirmation.vue';
 
 Vue.use(VueRouter);
 
@@ -12,6 +13,7 @@ const router = new VueRouter({
     { path: '/', component: UserInfo },
     { path: '/question', component: Question },
     { path: '/consultation', component: Consultation },
+    { path: '/confirmation', component: Confirmation}
   ],
 });
 
