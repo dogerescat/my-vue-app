@@ -9,9 +9,9 @@ const store = new Vuex.Store({
     year: '',
     month: '',
     day: '',
-    first_question: '',
-    second_question: '',
-    third_question: '',
+    firstQuestion: '',
+    secondQuestion: '',
+    thirdQuestion: '',
     consultation: '',
   },
   mutations: {
