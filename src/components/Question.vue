@@ -8,10 +8,10 @@
         <p class="p">現在生命保険に加入されていますか？</p>
         <form class="form-question" v-on:change="openSecondquestion">
           <label>
-            <input type="radio" v-model="first_question" value="はい" name="first" checked />はい
+            <input type="radio" v-model="firstQuestion" value="はい" name="first" checked />はい
           </label>
           <label>
-            <input type="radio" v-model="first_question" value="いいえ" name="first" />いいえ
+            <input type="radio" v-model="firstQuestion" value="いいえ" name="first" />いいえ
           </label>
         </form>
       </div>
@@ -20,10 +20,10 @@
         <p class="p">現在入院中ですか。または、３ヶ月以内に医師の診断、検査の結果、入院、手術を進められたことはありますか？</p>
         <form class="form-question" v-on:change="openThirdquestion">
           <label>
-            <input type="radio" v-model="second_question" value="はい" name="second" checked />はい
+            <input type="radio" v-model="secondQuestion" value="はい" name="second" checked />はい
           </label>
           <label>
-            <input type="radio" v-model="second_question" value="いいえ" name="second" />いいえ
+            <input type="radio" v-model="secondQuestion" value="いいえ" name="second" />いいえ
           </label>
         </form>
       </div>
@@ -32,10 +32,10 @@
         <p class="p">過去5年以内に病気や怪我、手術を受けたことまたは、継続して７日間以上の入院をしたことがありますか？</p>
         <form class="form-question">
           <label>
-            <input type="radio" v-model="third_question" value="はい" name="third" checked />はい
+            <input type="radio" v-model="thirdQuestion" value="はい" name="third" checked />はい
           </label>
           <label>
-            <input type="radio" v-model="third_question" value="いいえ" name="third" />いいえ
+            <input type="radio" v-model="thirdQuestion" value="いいえ" name="third" />いいえ
           </label>
         </form>
       </div>
