@@ -53,14 +53,14 @@
     
 <script>
 export default {
-  name: "Question",
+  name: 'Question',
   data() {
     return {
       secondquestion: false,
       thirdquestion: false,
-      first_question: "",
-      second_question: "",
-      third_question: "",
+      firstQuestion: '',
+      secondQuestion: '',
+      thirdQuestion: ''
     };
   },
   methods: {
@@ -71,10 +71,10 @@ export default {
       this.thirdquestion = true;
     },
     manageQuestion() {
-      this.$store.commit("manageQuestion", {
-        first_question: this.first_question,
-        second_question: this.second_question,
-        third_question: this.third_question,
+      this.$store.commit('manageQuestion', {
+        first_question: this.firstQuestion,
+        second_question: this.secondQuestion,
+        third_question: this.thirdQuestion,
       });
     },
   },

@@ -21,15 +21,15 @@
 </template>
 <script>
 export default {
-  name: "Consultation",
+  name: 'Consultation',
   data() {
     return {
-      consultation: "",
+      consultation: '',
     };
   },
   methods: {
     manageConsultation() {
-      this.$store.commit("manageConsultation", {
+      this.$store.commit('manageConsultation', {
         consultation: this.consultation,
       });
     },

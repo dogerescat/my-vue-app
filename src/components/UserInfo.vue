@@ -40,15 +40,15 @@
 
 <script>
 export default {
-  name: "UserInfo",
+  name: 'UserInfo',
   data() {
     return {
       year: 1970,
       month: 1,
       day: 1,
-      days_max: "",
+      days_max: '',
       eras: [],
-      gender: "",
+      gender: '',
     };
   },
   created() {
@@ -77,7 +77,7 @@ export default {
       return eras;
     },
     manageUserInfo() {
-      this.$store.commit("manageUserInfo", {
+      this.$store.commit('manageUserInfo', {
         gender: this.gender,
         year: this.year,
         month: this.month,
