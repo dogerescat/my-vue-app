@@ -72,9 +72,9 @@ export default {
     },
     manageQuestion() {
       this.$store.commit('manageQuestion', {
-        first_question: this.firstQuestion,
-        second_question: this.secondQuestion,
-        third_question: this.thirdQuestion,
+        firstQuestion: this.firstQuestion,
+        secondQuestion: this.secondQuestion,
+        thirdQuestion: this.thirdQuestion,
       });
     },
   },
